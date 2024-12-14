@@ -1,0 +1,20 @@
+// Mixins
+
+@mixin policeText {
+    font-family: 'Lora',serif;
+    font-style: italic;
+}
+
+@mixin displayFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+@mixin displayGrid {
+    display: grid;
+    justify-content: center;
+    place-items: center;
+    gap: 50px;
+}
