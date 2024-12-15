@@ -1,13 +1,8 @@
 @use"../settings";
+@use"../layouts/mixins";
 
 .error {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-
+    @include mixins.sectionFlex;
 
     .container {
         width: 85%;

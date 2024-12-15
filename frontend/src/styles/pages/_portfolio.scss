@@ -29,40 +29,7 @@ main {
             }
 
         h2 {
-            font-size: 5rem;
-            padding: 0 0 20px 0;
-            position: relative;
-            display: block;
-            &:before, &:after {
-                content: "";
-                position: absolute;
-                width: 28%;
-                height: 1px;
-                background: settings.$main-color;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-            &:before {
-                left: 0;
-                @media (max-width: 768px){
-                    display: none;
-                    }
-                }
-            &:after {
-                right: 0;
-                @media (max-width: 768px){
-                    width: 50%;
-                    transform: translateX(-50%) translateY(20px);
-                    }
-            }
-
-            @media (max-width: 1024px){
-                font-size: 3rem;
-                // padding: 0 0 20px 0;
-            }
-            @media (max-width: 768px){
-                font-size: 2.5rem;
-            }
+            @include mixins.title(settings.$main-color);
         }
     }
 

@@ -18,3 +18,48 @@
     place-items: center;
     gap: 50px;
 }
+
+@mixin sectionFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+@mixin title($main-color){
+    font-size: 5rem;
+    padding: 0 0 20px 0;
+    position: relative;
+    display: block;
+    &:before, &:after {
+        content: "";
+        position: absolute;
+        width: 28%;
+        height: 1px;
+        background: $main-color;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &:before {
+        left: 0;
+        @media (max-width: 768px){
+            display: none;
+        }
+    }
+    &:after {
+        right: 0;
+        @media (max-width: 768px){
+            width: 50%;
+            transform: translateX(-50%) translateY(20px);
+        }
+    }
+
+    @media (max-width: 1024px){
+        font-size: 3rem;
+    }
+    @media (max-width: 768px){
+        font-size: 2.5rem;
+    }      
+}

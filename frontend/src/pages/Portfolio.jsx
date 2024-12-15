@@ -25,7 +25,7 @@ const Portfolio = () => {
 
     const [projets, setProjets] = useState([]); // State pour les projets de l'API
     useEffect(() => {
-        axios.get('http://localhost:5000/projets')  // URL local de mon API
+        axios.get('http://localhost:5000/api/projets')  // URL local de mon API
             .then(response => {
                 setProjets(response.data);
             })
