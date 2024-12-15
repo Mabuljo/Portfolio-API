@@ -2,18 +2,17 @@ import React, {useState,useEffect} from 'react';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import Icon from '../components/Icon';
-import Projets from "../datas/projets.json";
 import Card from '../components/Card';
 import Form from '../components/Form';
 import Footer from '../components/Footer';
 import Modal from '../components/Modal';
+import axios from 'axios';
 
 
 const Portfolio = () => {
 
     // Liste des logos avec le nom de chaque fichier d'image (sans extension)
     const iconNames = ['html5','css3','javascript','react','redux','sass','notion','github','figma']; 
-
     // Etat pour la technologie sélectionnée
     const [selectedTech, setSelectedTech] = useState(''); 
     // Liste des technologies
@@ -22,7 +21,18 @@ const Portfolio = () => {
     // Fonction qui met à jour les projets en fonction du bouton cliqué
     const handleTechChange = (tech) => {
         setSelectedTech(tech === 'Tous' ? '' : tech); // Si on clique sur 'Tous', on réinitialise les technologies
-    }
+    };
+
+    const [projets, setProjets] = useState([]); // State pour les projets de l'API
+    useEffect(() => {
+        axios.get('http://localhost:5000/projets')  // URL local de mon API
+            .then(response => {
+                setProjets(response.data);
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des projets', error);
+            });
+    }, []);
 
     // Variables et Fonction pour la Modale
     const [modal, setModal] = useState(false);
@@ -82,14 +92,14 @@ const Portfolio = () => {
                             ))}
                         </div>
                         <div className='projets_cards'>
-                            {Projets.filter(projet => {
+                            {projets.filter(projet => {
                                 if (!selectedTech) {
                                     return true; // Si aucune technologie sélectionnée, afficher tous les projets
                                 } else {
                                 return projet.technologies.includes(selectedTech);  // Vérifier si la technologie du projet correspond au filtre
                                 }
                             }).map((projet) => (
-                                <Card projet={projet} key={projet.id} toggleModal={() => toggleModal(projet)} /> // Passe le projet cliqué
+                                <Card projet={projet} key={projet._id} toggleModal={() => toggleModal(projet)} /> // Affiche le projet cliqué
                             ))}
                         </div>
                     </div>

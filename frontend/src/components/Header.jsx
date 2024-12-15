@@ -36,6 +36,7 @@ const Header = () => {
                 <a href="#projets" onClick={closeMenu}>Projets</a>
                 <a href="#contact" onClick={closeMenu}>Contact</a>
                 <a href="/assets/cv_marjorie_goudet.pdf" onClick={closeMenu}>Mon CV</a>
+                <a href="/login" onClick={closeMenu}>Login</a>
             </nav>
             <i className={`fa-solid menu ${isOpen ? "fa-xmark" : "fa-bars"}`} onClick={toggleMenu}></i>
         </header>

@@ -7,10 +7,7 @@ const Modal = ({projet, toggleModal, isOpen}) => {
 
     useEffect(() => {
         if (isOpen) {
-            setTimeout(() => setVisible(true), 10); // Petit délai pour permettre le montage du DOM
-        } else {
-            const timer = setTimeout(() => setVisible(false), 400); // Délai de 400ms pour la fermeture
-            return () => clearTimeout(timer);
+            setTimeout(() => setVisible(true), 10); // Petit délai pour permettre le montage du DOM avant l'animation
         }
     }, [isOpen]);
 
