@@ -3,6 +3,7 @@
 @use "./pages/portfolio";
 @use "./pages/error";
 @use "./pages/mentions-legales";
+@use "./pages/admin";
 @use "./pages/login";
 @use "./layouts/animations";
 @use"./layouts/mixins";
@@ -12,3 +13,5 @@
 @use"./components/card";
 @use"./components/form";
 @use"./components/modal";
+@use "./components/projet";
+@use "./components/modalAdmin";

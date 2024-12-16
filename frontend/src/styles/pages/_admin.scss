@@ -1,0 +1,62 @@
+@use"../settings";
+@use"../layouts/mixins";
+
+.admin {
+    @include mixins.sectionFlex;
+    gap: 50px;
+
+    h1 {
+        width: 100%;
+        @include mixins.title(settings.$main-color);
+    }
+    .logout {
+        color: settings.$main-color;
+        font-weight: bold;
+        align-self: end;
+        &:visited {
+            color: settings.$main-color;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px){
+            font-size: 1rem;
+        }
+    }
+    .adminSection {
+        @include mixins.displayFlex;
+        width: 85%;
+        padding: 50px;
+        margin: 20px auto 0;
+        background: settings.$background-color;     
+        border-radius: 25px;
+        color: settings.$main-color;
+        @media (max-width: 1024px){
+            gap: 20px;  
+        }
+        @media (max-width: 768px){
+            padding: 20px;
+        }
+
+        .adminProjets {
+            @include mixins.displayFlex;
+            width: 100%;
+            @media (max-width: 768px){
+                gap: 20px;  
+            }
+            h2 {
+                font-size: 3rem;
+                @media (max-width:1024px){
+                    font-size: 2rem;
+                }
+            }
+            &_content {
+                @include mixins.displayFlex;
+                width: 100%;
+                gap: 20px;
+            }
+        }
+    }
+
+
+}

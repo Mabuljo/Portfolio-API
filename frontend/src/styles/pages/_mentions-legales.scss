@@ -16,6 +16,10 @@
         @media (max-width: 1024px){
             gap: 20px;
         }
+        @media (max-width: 768px){
+            border-radius: 10px;
+            padding: 20px;
+        }
 
         h1 {
             width: 100%;
@@ -32,11 +36,12 @@
                 font-size: 2rem;
             }
         }
-
-        @media (max-width: 768px){
-            border-radius: 10px;
-            padding: 20px;
+        &_content {
+            @include mixins.displayFlex;
+            width: 100%; 
         }
+
+        
 
         p {
             padding: 20px;

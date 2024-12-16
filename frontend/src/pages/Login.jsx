@@ -8,10 +8,12 @@ const Login = () => {
     const [pseudo, setPseudo] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false); // State pour le loader
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setIsLoading(true); // Activer le loader
     
         try {
         // Envoi de la requête de connexion à l'API
@@ -26,6 +28,8 @@ const Login = () => {
 
         } catch (error) {
           setError('Pseudo ou mot de passe incorrect');
+        } finally {
+            setIsLoading(false); // Désactiver le loader après la requête
         }
       };
 
@@ -45,7 +49,7 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)} required/>
                         </div>
                         {error && <p className="connexion-error">{error}</p>}
-                        <Button type='submit' text="Se connecter"/>
+                        <Button type='submit' text={isLoading ? <i className="fa-solid fa-spinner fa-spin"></i> : "Se connecter"}/>
                     </form>
                 </div>
             </div>

@@ -27,8 +27,12 @@ footer {
     .link_mentions {
         color: settings.$main-color;
         margin-right: 10px;
+        font-weight: bold;
         &:visited {
             color: settings.$main-color;
+        }
+        &:hover {
+            text-decoration: underline;
         }
         @media (max-width: 768px){
             font-size: 1rem;

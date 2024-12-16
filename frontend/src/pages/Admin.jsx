@@ -1,9 +1,80 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Footer from '../components/Footer';
+import Button from '../components/Button';
+import Projet from '../components/Projet';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import ModalAdmin from '../components/ModalAdmin';
 
 const Admin = () => {
+    const [projetsAdmin, setProjetsAdmin] = useState([]); // State pour les projets de l'API
+    const token = localStorage.getItem('token');
+    const navigate = useNavigate();
+
+    // Pour récupérer les projets
+    useEffect(() => {
+        axios.get('http://localhost:5000/api/projets')  // URL local de mon API
+            .then(response => {
+                setProjetsAdmin(response.data);
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des projets', error);
+            });
+    }, []);
+
+    // Fonction pour gérer la déconnexion
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Supprimer le token du localStorage
+        navigate('/'); // Rediriger vers la page d'accueil
+    };
+
+    // Fonction pour supprimer un projet
+    const deleteProjet = async (id) => {
+        if (window.confirm("Voulez-vous vraiment supprimer ce projet ?")) {
+            try {
+                await axios.delete(`http://localhost:5000/api/projets/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
+                // Mettre à jour le state pour retirer le projet supprimé
+                setProjetsAdmin(projetsAdmin.filter(projet => projet._id !== id));
+            } catch (error) {
+                console.error('Erreur lors de la suppression du projet', error);
+            }
+        }
+    };
+
+    // Variables et Fonction pour la Modale d'ajout de projet
+        const [modalAdmin, setModalAdmin] = useState(false);
+        const toggleModalAdmin= () => {
+            setModalAdmin(!modalAdmin); // Ouvre ou ferme la modale
+        };
+        useEffect(() => {
+                if (modalAdmin) {
+                    document.body.classList.add('active-modalAdmin'); // Ajoute la classe quand modal est true
+                } else {
+                    document.body.classList.remove('active-modalAdmin'); // Retire la classe quand modal est false
+                }
+            }, [modalAdmin]);
+
     return (
-        <div>
-            
+        <div className='admin'>
+            <div className='adminSection'>
+                <a href="/" target='_self' aria-label='Log out' className='logout' onClick={handleLogout} >Log out</a>
+                <h1>Bienvenue !</h1>
+                <div className='adminProjets'>
+                    <h2>Gestion des projets</h2>
+                    <div className='adminProjets_content'>
+                        {projetsAdmin.map((projetAdmin) => (<Projet projet={projetAdmin} key={projetAdmin._id} deleteTrash={deleteProjet}/>))}
+                    </div>
+                    <Button type='button' text="Ajouter un projet" onClick={toggleModalAdmin}/>
+                </div>
+                {/* Affichage conditionnel de la modale */}
+                {modalAdmin && <ModalAdmin toggleModalAdmin={toggleModalAdmin} isOpen={modalAdmin} token={token} />}
+            </div> 
+            <Footer />
         </div>
     );
 };

@@ -1,0 +1,52 @@
+@use"../settings";
+@use"../layouts/mixins";
+
+.active-modalAdmin {
+    overflow-y: hidden;
+}
+
+.modalAdmin {
+    @include mixins.modale;
+
+    
+    &_container {
+        @include mixins.modaleContainer;
+        background-color: settings.$background-color;
+
+        .close-modal {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 7px;
+        }
+
+        h3 {
+            font-size: 2.5rem;
+            @media (max-width:768px){
+                font-size: 2rem;
+            }
+        }
+    }
+
+    &_form {
+        @include mixins.displayFlex;
+        width: 100%;
+        gap: 10px;
+        &--addCover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 7px;
+            background-color:settings.$secondary-color;
+            width: 300px;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+    }
+    
+
+    
+}
