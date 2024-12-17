@@ -8,7 +8,7 @@ import ModalAdmin from '../components/ModalAdmin';
 
 const Admin = () => {
     const [projetsAdmin, setProjetsAdmin] = useState([]); // State pour les projets de l'API
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     const navigate = useNavigate();
 
     // Pour récupérer les projets
@@ -28,7 +28,7 @@ const Admin = () => {
 
     // Fonction pour gérer la déconnexion
     const handleLogout = () => {
-        localStorage.removeItem('token'); // Supprimer le token du localStorage
+        sessionStorage.removeItem('token'); // Supprimer le token du sessionStorage
         navigate('/'); // Rediriger vers la page d'accueil
     };
 
@@ -66,7 +66,10 @@ const Admin = () => {
     return (
         <div className='admin'>
             <div className='adminSection'>
-                <a href="/" target='_self' aria-label='Log out' className='logout' onClick={handleLogout} >Log out</a>
+                <div className='adminSection_menu'>
+                    <a href="/" target='_self' aria-label='Log out'className='logout'>Portfolio</a>
+                    <a href="/" target='_self' aria-label='Log out' className='logout' onClick={handleLogout} >Log out</a> 
+                </div>
                 <h1>Bienvenue !</h1>
                 <div className='adminProjets'>
                     <h2>Gestion des projets</h2>

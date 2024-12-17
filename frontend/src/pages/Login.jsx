@@ -21,7 +21,7 @@ const Login = () => {
 
           if (response.status === 200) {
             const { token } = response.data; // Si la connexion réussie, on récupère le token
-            localStorage.setItem('token', token); // On le stocke dans le localStorage
+            sessionStorage.setItem('token', token); // On le stocke dans le sessionStorage
             setError('');
             navigate('/admin'); // Rediriger vers la page admin
           }

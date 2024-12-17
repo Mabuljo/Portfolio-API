@@ -25,7 +25,7 @@ const ModalAdmin = ({toggleModalAdmin, isOpen, token, refreshProjets}) => {
     };
 
     const addDescription = () => {
-        setDescription([...description, ""]);
+        setDescription([...description, ""]); // Lorsqu'un utilisateur clique, un nouveau champ est ajouté
     };
 
     const addTechnology = () => {
@@ -33,9 +33,9 @@ const ModalAdmin = ({toggleModalAdmin, isOpen, token, refreshProjets}) => {
     };
 
     const handleDescription = (e, index) => {
-        const newDescription = [...description];
-        newDescription[index] = e.target.value;
-        setDescription(newDescription);
+        const newDescription = [...description]; //Crée une copie de la liste actuelle
+        newDescription[index] = e.target.value; // Modifie l'élément à l'index donné
+        setDescription(newDescription); // Met à jour le state Description
     };
 
     const handleTechnology = (e, index) => {
@@ -48,7 +48,7 @@ const ModalAdmin = ({toggleModalAdmin, isOpen, token, refreshProjets}) => {
         e.preventDefault();
         setIsLoading(true); // Activer le loader
 
-        // Création de l'objet projectData avant l'envoie de la requête à l'API
+        // Création de l'objet projectData avant l'envoi de la requête à l'API
         const projectData = {
             title: formData.title,
             github: formData.github,
@@ -67,7 +67,7 @@ const ModalAdmin = ({toggleModalAdmin, isOpen, token, refreshProjets}) => {
         .then(response => {
             console.log('Projet ajouté:', response.data);
             setError(''); // Si la requête réussie, on réinitialise l'erreur.
-            refreshProjets();     // Actualiser la liste des projets
+            refreshProjets();     // Actualiser la liste des projets dans Admin
             toggleModalAdmin();   // Fermer la modale
         })
         .catch(error => {
@@ -119,7 +119,8 @@ const ModalAdmin = ({toggleModalAdmin, isOpen, token, refreshProjets}) => {
                         <div className='modalAdmin_form--details'>
                             <label htmlFor="title">Titre</label>
                             <input type="text" name="title" required value={formData.title} 
-                            onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
+                            onChange={(e) => setFormData({ ...formData, title: e.target.value })} /> 
+                            {/* met à jour le champ spécifique dans l'objet formData, sans écraser les autres champs */}
                         </div>
                         <div className='modalAdmin_form--details'>
                             <div className='modalAdmin_form--details mobile'>

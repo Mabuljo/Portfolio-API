@@ -10,7 +10,7 @@ const Error = () => {
                     <h1>Oups...</h1>
                     <img src="/assets/images/error_404.svg" alt="Erreur 404"/>
                     <h2>La page que vous demandez n'existe pas.</h2>
-                    <Button type='link' href="/" newtab={false} text="Retourner sur le portfolio"/>
+                    <Button type='link' href="/" newTab={false} text="Retourner sur le portfolio"/>
                 </div>
             </div>
             <Footer />

@@ -19,7 +19,7 @@ const MentionsLegales = () => {
                     <h2>Responsabilités :</h2>
                     <p>Ce site est destiné à présenter mes projets personnels. Je ne suis pas responsable des erreurs ou dysfonctionnements éventuels. Aucun contenu commercial n'est proposé.</p>
                 </div>
-                <Button type='link' href="/" newtab={false} text="Retourner sur le portfolio"/>
+                <Button type='link' href="/" newTab={false} text="Retourner sur le portfolio"/>
             </div>
             <Footer />
         </div>

@@ -40,6 +40,7 @@
         // color: settings.$background-color;
         background: settings.$secondary-color;
         @media (max-width:768px){ 
+            border-radius: 10px;
             gap: 10px;
         }
 
