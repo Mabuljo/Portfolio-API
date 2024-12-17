@@ -51,12 +51,16 @@
                 }
             }
             &_content {
-                @include mixins.displayFlex;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                place-items: center;
                 width: 100%;
                 gap: 20px;
+                @media (max-width: 768px){
+                    grid-template-columns: 1fr;
+                }
+
             }
         }
     }
-
-
 }

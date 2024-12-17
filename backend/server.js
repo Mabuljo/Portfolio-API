@@ -4,6 +4,7 @@ const connectDB = require("./config/db");
 const dotenv = require("dotenv").config();
 const cors = require('cors'); 
 const app = express(); // variable qui, lorsqu'on codera app.get app.use etc, ira chercher les fonctions dans la biblio express
+const path = require('path'); // pour utiliser 'path'
 port = 5000; // numéro du port où on veut jouer notre serveur
 
 // Connexion à la DB

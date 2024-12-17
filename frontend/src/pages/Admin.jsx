@@ -12,7 +12,7 @@ const Admin = () => {
     const navigate = useNavigate();
 
     // Pour récupérer les projets
-    useEffect(() => {
+    const fetchProjets = () => {
         axios.get('http://localhost:5000/api/projets')  // URL local de mon API
             .then(response => {
                 setProjetsAdmin(response.data);
@@ -20,6 +20,10 @@ const Admin = () => {
             .catch(error => {
                 console.error('Erreur lors de la récupération des projets', error);
             });
+    };
+
+    useEffect(() => {
+        fetchProjets();
     }, []);
 
     // Fonction pour gérer la déconnexion
@@ -72,7 +76,7 @@ const Admin = () => {
                     <Button type='button' text="Ajouter un projet" onClick={toggleModalAdmin}/>
                 </div>
                 {/* Affichage conditionnel de la modale */}
-                {modalAdmin && <ModalAdmin toggleModalAdmin={toggleModalAdmin} isOpen={modalAdmin} token={token} />}
+                {modalAdmin && <ModalAdmin toggleModalAdmin={toggleModalAdmin} isOpen={modalAdmin} token={token} refreshProjets={fetchProjets}/>}
             </div> 
             <Footer />
         </div>

@@ -21,7 +21,7 @@ module.exports.setProjets = async (req, res) => {
   const { title, cover, description, technologies, github, site } = req.body;
 
   // Vérifier si tous les champs nécessaires sont présents et si le projet existe
-  if (!title || !cover || !description || !technologies || !github ||!req.body) {
+  if (!title || !cover || !description ||!Array.isArray(description) || description.length === 0 || !technologies || !Array.isArray(technologies) || technologies.length === 0 || !github) {
     return res.status(400).json({ message: "Tous les champs sont requis" });
   }
 

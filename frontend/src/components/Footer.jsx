@@ -10,7 +10,7 @@ const Footer = () => {
                     <a href="https://github.com/Mabuljo" target='_blank' aria-label='Lien GitHub' rel="noopener noreferrer"><i className="fa-brands fa-github"></i></a>
                     <a href="mailto:mabuljo-dev@gmail.com" target='_blank' aria-label='Lien email' rel="noopener noreferrer" ><i className="fa-solid fa-envelope"></i></a>
                 </div>
-                <a href="/mentions-legales" target='_blank' aria-label='Mentions légales' rel="noopener noreferrer" className='link_mentions'>Mentions légales</a>
+                <a href="/mentions-legales" target='_self' aria-label='Mentions légales' className='link_mentions'>Mentions légales</a>
             </div>
         </footer>
     );
